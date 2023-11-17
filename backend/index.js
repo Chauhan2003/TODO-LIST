@@ -37,6 +37,29 @@ const serverStart = async () => {
         }
     });
 
+    app.get('/alltask/date/:date', async(req, res) => {
+        try{
+            const date = req.params.date;
+            console.log(date);
+
+            if(!date){
+                return res.status(400).json({ error: 'Invalid request parameters' });
+            }
+
+            const tasks = await alltaskModel.find({
+                createdAt: {
+                    $gte: new Date(date + 'T00:00:00.000Z'),
+                    $lt: new Date(date + 'T23:59:59.999Z')
+                }
+            });
+
+            res.json(tasks);
+        }
+        catch(err){
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    })
+
     app.put('/alltask/:id', async (req, res) => {
         try {
             const taskId = req.params.id;

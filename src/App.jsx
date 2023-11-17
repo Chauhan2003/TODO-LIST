@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Today from './pages/Today';
 import Task from './pages/Task';
 import Addtask from './pages/Addtask';
+import Stickywall from './pages/Stickywall';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/todaytask' element={<Today />} />
         <Route path='/alltask' element={<Task />} />
         <Route path='/addtask' element={<Addtask />} />
+        <Route path='/stickywall' element={<Stickywall />} />
       </Routes>
     </Router>
   )
